@@ -1,11 +1,13 @@
 import React from "react";
 import Sidebar from "../components/Sidebar.jsx";
+import InputSeacrch from "../components/InputSeacrch.jsx";
 
 function Dashboard() {
   return (
     <>
-      <section className="p-8">
+      <section className="flex items-start p-8">
         <Sidebar />
+        <InputSeacrch />
       </section>
     </>
   );

@@ -14,7 +14,7 @@ export default function Sidebar() {
   ];
   return (
     <>
-      <div className=" hidden md:flex flex-col justify-center items-center w-[100px] h-screen bg-bgCard rounded-lg space-y-10">
+      <div className=" hidden md:flex flex-col justify-center items-center w-[100px] h-[80vh] transform translate-y-[10%] bg-bgCard rounded-lg space-y-10">
         {iconsSiderBar.map((icon) => (
           <div
             className=" w-[80%] flex flex-col justify-center items-center gap-2 hover:bg-bgCardSoft p-2 rounded-md "
@@ -25,26 +25,28 @@ export default function Sidebar() {
           </div>
         ))}
       </div>
+      <div className="md:hidden space-y-8 ">
+        <button
+          className="  w-[3rem] h-[3rem] text-2xl bg-bgCard hover:bg-bgCardSoft grid place-content-center rounded-md  z-10"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <RiCloseLargeLine /> : <FaAlignLeft />}
+        </button>
 
-      <button
-        className=" md:hidden w-[3rem] h-[3rem] text-2xl bg-bgCard hover:bg-bgCardSoft grid place-content-center rounded-md absolute top-[10%] left-[12%] z-10"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <RiCloseLargeLine /> : <FaAlignLeft />}
-      </button>
-      {isOpen && (
-        <div className="md:hidden flex flex-col justify-center items-center w-[100px] h-screen bg-bgCard rounded-lg space-y-10 relative">
-          {iconsSiderBar.map((icon) => (
-            <div
-              className=" w-[80%] flex flex-col justify-center items-center gap-2 hover:bg-bgCardSoft p-2 rounded-md "
-              key={icon.id}
-            >
-              <span className="text-2xl">{icon.icon}</span>
-              <h3>{icon.label}</h3>
-            </div>
-          ))}
-        </div>
-      )}
+        {isOpen && (
+          <div className=" flex flex-col justify-center items-center w-[100px] h-[70vh] bg-bgCard rounded-lg space-y-8">
+            {iconsSiderBar.map((icon) => (
+              <div
+                className=" w-[80%] flex flex-col justify-center items-center gap-2 hover:bg-bgCardSoft p-2 rounded-md "
+                key={icon.id}
+              >
+                <span className="text-2xl">{icon.icon}</span>
+                <h3>{icon.label}</h3>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   );
 }
