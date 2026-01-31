@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-app: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-soft: #273449;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+}
+
+* {
+  transition: all 0.5s ease-in-out;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+}
