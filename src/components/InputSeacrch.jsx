@@ -8,7 +8,7 @@ export default function InputSeacrch() {
           <input
             type="text"
             placeholder="Search city weather..."
-            className="w-[100%] bg-transparent py-3  px-5 outline-none placeholder-opacity-15 italic"
+            className="w-[100%] bg-transparent py-3  px-5 outline-none opacity-35 italic"
           />
         </div>
         <button className="w-[15%] bg-bgCard p-3 text-xl flex justify-center items-center rounded-md hover:bg-bgCardSoft ">
