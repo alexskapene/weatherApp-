@@ -1,24 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar.jsx";
 import InputSeacrch from "../components/InputSeacrch.jsx";
 import WeatherCard from "../components/WeatherCard.jsx";
 import RightSide from "../components/RightSide.jsx";
 
 function Dashboard() {
-  return (
-    <>
-      <main className="relative p-8 ">
-        <section className=" section1 flex items-start ">
-          <Sidebar />
-          <InputSeacrch />
-        </section>
+  const [city, setCity] = useState("Goma");
+  const [weather, setWeather] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const api_Key = import.meta.env.VITE_WEATHER_API_KEY;
+
+  const fetchWeather = async (searchCity) => {
+    if (!searchCity || searchCity.trim() === "") {
+      setError("Please enter a city name");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=${api_Key}&q=${searchCity}&days=5&aqi=yes&alerts=no`,
+      );
+
+      if (!response.ok) {
+        throw new Error("City not found");
+      }
+
+      const data = await response.json();
+      setWeather(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  console.log(weather);
+  // chargement initial
+  useEffect(() => {
+    fetchWeather(city);
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  return (
+    <main className="relative p-8">
+      <section className="section1 flex items-start">
+        <Sidebar />
+        <InputSeacrch
+          city={city}
+          setCity={setCity}
+          onSearch={() => fetchWeather(city)}
+          onLocate={() => fetchWeather("Goma")}
+        />
+      </section>
+
+      {weather && (
         <section className="section2 w-[85%] flex justify-between items-center p-8 mx-auto absolute top-[17%] left-[15%]">
-          <WeatherCard />
-          <RightSide />
+          <WeatherCard weather={weather} />
+          <RightSide weather={weather} />
         </section>
-      </main>
-    </>
+      )}
+    </main>
   );
 }
 

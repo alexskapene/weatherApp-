@@ -3,7 +3,7 @@ import ImgNuageSoleil from "../assets/images/nuages-et-soleil.png";
 import Imgsoleil1 from "../assets/images/soleil1.png";
 import Imgsoleil from "../assets/images/soleil.png";
 
-export default function WeatherCard() {
+export default function WeatherCard({ weather }) {
   const hoursWeather = [
     { id: 1, title: "6:00 AM", image: ImgWeather, degre: 25 },
     { id: 2, title: "9:00 AM", image: Imgsoleil1, degre: 28 },
@@ -18,12 +18,15 @@ export default function WeatherCard() {
       <section className="w-[60%] h-auto">
         <div className="flex justify-between items-center ">
           <div>
-            <h1 className="text-textPrimary text-5xl font-bold">Madrid</h1>
+            <h1 className="text-textPrimary text-5xl font-bold">
+              {weather?.location?.name}
+            </h1>
             <span className="mt-2 font-thin text-textMuted text-xl">
-              chance of rare ON
+              {weather?.location?.country}
             </span>
             <h1 className="text-textPrimary text-6xl font-bold mt-10">
-              31 <span className="font-light">°C</span>
+              {Math.round(weather?.current?.temp_c)}{" "}
+              <span className="font-light">°C</span>
             </h1>
           </div>
           <img src={Imgsoleil} alt="image soleil" className="w-[10rem] " />
