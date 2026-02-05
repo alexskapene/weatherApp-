@@ -16,9 +16,13 @@ export default function WeatherCard({ weather }) {
     <section className="w-[60%] h-auto">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-textPrimary text-5xl font-bold">
+          <h1 className="text-textPrimary text-5xl font-bold mb-4">
             {weather.location?.name}
           </h1>
+          <span className="mt-2 font-medium text-textPrimary text-xl">
+            {weather.location?.region}
+          </span>{" "}
+          <br />
           <span className="mt-2 font-thin text-textMuted text-xl">
             {weather.location?.country}
           </span>

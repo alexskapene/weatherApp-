@@ -59,24 +59,26 @@ function Dashboard() {
     );
 
   return (
-    <main className="relative p-8">
-      <section className="section1 flex items-start">
-        <Sidebar />
-        <InputSeacrch
-          city={city}
-          setCity={setCity}
-          onSearch={() => fetchWeather(city)}
-          onLocate={() => fetchWeather("")}
-        />
-      </section>
-
-      {weather && (
-        <section className="section2 w-[85%] flex justify-between items-center p-8 mx-auto absolute top-[17%] left-[15%]">
-          <WeatherCard weather={weather} />
-          <RightSide weather={weather} />
+    <>
+      <main className="relative p-8">
+        <section className="section1 flex items-start">
+          <Sidebar />
+          <InputSeacrch
+            city={city}
+            setCity={setCity}
+            onSearch={() => fetchWeather(city)}
+            onLocate={() => fetchWeather("")}
+          />
         </section>
-      )}
-    </main>
+
+        {weather && (
+          <section className="section2 w-[85%] flex justify-between items-center p-8 mx-auto absolute top-[17%] left-[15%]">
+            <WeatherCard weather={weather} />
+            <RightSide weather={weather} />
+          </section>
+        )}
+      </main>
+    </>
   );
 }
 
