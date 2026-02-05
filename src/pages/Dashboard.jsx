@@ -32,6 +32,7 @@ function Dashboard() {
 
       const data = await response.json();
       setWeather(data);
+      setCity("");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -44,8 +45,18 @@ function Dashboard() {
     fetchWeather(city);
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading)
+    return (
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700">
+        Error: {error}
+      </div>
+    );
 
   return (
     <main className="relative p-8">
@@ -55,7 +66,7 @@ function Dashboard() {
           city={city}
           setCity={setCity}
           onSearch={() => fetchWeather(city)}
-          onLocate={() => fetchWeather("Goma")}
+          onLocate={() => fetchWeather("")}
         />
       </section>
 

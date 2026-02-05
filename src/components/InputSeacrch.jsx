@@ -7,7 +7,7 @@ export default function InputSeacrch({ city, setCity, onSearch }) {
         <input
           type="text"
           placeholder="Search city weather..."
-          className="w-full bg-transparent py-3 px-5 outline-none placeholder:opacity-40 italic"
+          className="w-full bg-transparent py-4 px-10 outline-none placeholder:opacity-40 font-bold"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && onSearch()}
